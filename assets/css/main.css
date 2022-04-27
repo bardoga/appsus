@@ -11,7 +11,7 @@
 
 /* keep imports */
 
-@import '../../apps/keep-app/assets/css/.apps/keep/pages/note-index.css';
-@import '../../apps/keep-app/assets/css/.apps/keep/cmps/note-list.css';
-@import '../../apps/keep-app/assets/css/.apps/keep/cmps/note-preview.css';
-@import '../../apps/keep-app/assets/css/.apps/keep/cmps/note-filter.css';
+@import '../../apps/keep-app/assets/css/apps/keep/pages/note-index.css';
+@import '../../apps/keep-app/assets/css/apps/keep/cmps/note-list.css';
+@import '../../apps/keep-app/assets/css/apps/keep/cmps/note-preview.css';
+@import '../../apps/keep-app/assets/css/apps/keep/cmps/note-filter.css';
