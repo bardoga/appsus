@@ -3,10 +3,17 @@ import { utilService } from '../services/util.service.js'
 
 
 function getColor(note) {
-    if (note.hasOwnProperty('style')) return note.style.backgroundColor
-    else return ''
-
+    // debugger
+    let color = note.style
+    console.log(note.backgroundColor)
+    if (color) return color.backgroundColor
+    // else {
+    //     note.style['backgroundColor'] =  utilService.getRandomLightColor()
+    //     return note.style.backgroundColor
+    // }
 }
+    
+
 
 function hasImage(note) {
     if (note.type === 'note-img') return note.info.url

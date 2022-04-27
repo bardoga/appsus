@@ -1,7 +1,8 @@
 export const utilService = {
     makeId,
     getRandomIntInclusive,
-    getRandomColor
+    getRandomColor,
+    getRandomLightColor
 }
 
 
@@ -31,4 +32,13 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)]
     }
     return color
+}
+
+function getRandomLightColor() {
+    var letters = 'BCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * letters.length)];
+    }
+    return color;
 }

@@ -1,6 +1,43 @@
+import { storageService } from '../../../services/storage-service.js'
+
+
+
 export const noteService = {
-    query
+    query,
+    getById,
+
 }
+
+
+
+const KEY = 'notesDB'
+
+
+function query(filterBy) {
+    let notes = _loadFromStorage()
+    if (!notes) {
+        notes = gNotes
+        _saveToStorage(notes)
+    }
+    if (filterBy) {
+        // let { text, img, vid, todo } = filterBy
+        // notes = notes.filter(note =>
+        //         note.type.includes(text))
+        // || note.type.includes(img) || note.type.includes(vid) || note.type.includes(todo)
+
+    }
+    return Promise.resolve(notes)
+}
+
+
+function getById() {
+    let notes = _loadFromStorage()
+    if (!notes) {
+        _saveToStorage(notes)
+    }
+}
+
+
 
 
 const gNotes = [{
@@ -32,25 +69,17 @@ const gNotes = [{
                 { txt: "Coding power", doneAt: 187111111 }
             ]
         }
-    }, {
-        id: "n104",
-        type: "note-txt",
-        isPinned: false,
-        info: {
-            txt: "Lorem Ipsum is simply dummy text of the "
-        }
-    }, {
-        id: "n105",
-        type: "note-video",
-        isPinned: false,
-        info: {
-            url: "https://www.youtube.com/watch?v=AhbCYVILusc"
-        }
-    },
+    }
 ];
 
 
-function query() {
-    let notes = gNotes
-    return Promise.resolve(notes)
+
+
+
+function _saveToStorage(cars) {
+    storageService.saveToStorage(KEY, cars)
+}
+
+function _loadFromStorage() {
+    return storageService.loadFromStorage(KEY)
 }
