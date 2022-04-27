@@ -21,7 +21,7 @@ export class Keep extends React.Component {
         notes: []
     }
     componentDidMount() {
-        console.log('Props from notesApp', this.state.notes)
+        // console.log('Props from notesApp', this.state.notes)
         this.loadNotes()
     }
 
@@ -29,14 +29,13 @@ export class Keep extends React.Component {
         noteService.query(this.state.notes)
             .then(notes => {
                 this.setState({ notes })
-                // console.log(this.state.notes)
             })
     }
 
 
     render() {
         const notes = this.state.notes
-        console.log(notes)
+        // console.log(notes)
         return <section className="note-index">
             <h2>Notes App</h2>
             <NoteList notes = {notes} />

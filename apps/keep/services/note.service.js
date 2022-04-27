@@ -32,7 +32,21 @@ const gNotes = [{
                 { txt: "Coding power", doneAt: 187111111 }
             ]
         }
-    }
+    }, {
+        id: "n104",
+        type: "note-txt",
+        isPinned: false,
+        info: {
+            txt: "Lorem Ipsum is simply dummy text of the "
+        }
+    }, {
+        id: "n105",
+        type: "note-video",
+        isPinned: false,
+        info: {
+            url: "https://www.youtube.com/watch?v=AhbCYVILusc"
+        }
+    },
 ];
 
 
