@@ -26,8 +26,9 @@ function handleType(note) {
             <ul>{listItems} i'm here</ul>
         )
     }
+   
 
-}
+ }
 
 
 

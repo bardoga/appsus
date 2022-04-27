@@ -1,0 +1,57 @@
+/* BASE */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Barlow Condensed', sans-serif;;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 340px;
+}
+
+textarea {
+  resize: none;
+}
+
+/* MEDIA QUERIES */
+
+/* SMALL */
+
+/* MEDIUM */
+@media (min-width: 640px) {
+  .container {
+    max-width: 600px;
+  }
+}
+
+/* LARGE */
+@media (min-width: 900px) {
+  .container {
+    max-width: 850px;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1150px;
+  }
+}

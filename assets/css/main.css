@@ -1,5 +1,16 @@
-@import '.cmps/app-header.css';
-@import '.basics/base.css';
-@import './.apps/keep/cmps/note-list.css';
-@import './.apps/keep/pages/note-index.css';
-@import './.apps/keep/cmps/note-preview.css';
+@import './base.css';
+@import './layout.css';
+@import './cmps/about.css';
+@import './cmps/app-header.css';
+@import './cmps/home.css';
+@import './cmps/msg-modal.css';
+
+/* mail imports */
+
+@import '../../apps/mail-app/assets/css/mail-app.css';
+
+/* keep imports */
+
+@import '../../apps/keep-app/assets/css/.apps/keep/pages/note-index.css';
+@import '../../apps/keep-app/assets/css/.apps/keep/cmps/note-list.css';
+@import '../../apps/keep-app/assets/css/.apps/keep/cmps/note-preview.css';

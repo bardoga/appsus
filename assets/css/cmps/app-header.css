@@ -1,0 +1,14 @@
+header {
+  background-color: white;
+  height: 80px;
+  font-weight: bold;
+}
+
+header nav,
+header nav ul {
+  height: 100%;
+}
+
+header a {
+  color: black;
+}

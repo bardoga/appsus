@@ -1,4 +1,4 @@
-import { noteService } from "../services/note.service.js"
+import { noteService } from '../services/note.service.js'
 
 
 import { NoteList } from "../cmps/note-list.jsx"
@@ -15,7 +15,7 @@ const { Link } = ReactRouterDOM
 
 
 
-export class Keep extends React.Component {
+export class NoteApp extends React.Component {
 
     state = {
         notes: []
