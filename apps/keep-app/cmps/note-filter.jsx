@@ -13,8 +13,8 @@ export class NoteFilter extends React.Component {
     inputRef = React.createRef()
 
     componentDidMount() {
-        console.log('Filter props', this.props)
-        console.log('input ref', this.inputRef)
+        // console.log('Filter props', this.props)
+        // console.log('input ref', this.inputRef)
         // this.inputRef.current.focus()
     }
 

@@ -3,16 +3,15 @@ import { utilService } from '../services/util.service.js'
 
 
 function getColor(note) {
-    // debugger
     let color = note.style
-    console.log(note.backgroundColor)
+    // console.log(note.backgroundColor)
     if (color) return color.backgroundColor
     // else {
     //     note.style['backgroundColor'] =  utilService.getRandomLightColor()
     //     return note.style.backgroundColor
     // }
 }
-    
+
 
 
 function hasImage(note) {
@@ -33,9 +32,9 @@ function handleType(note) {
             <ul>{listItems} i'm here</ul>
         )
     }
-   
 
- }
+
+}
 
 
 
@@ -47,6 +46,11 @@ export function NotePreview({ note }) {
 
         {/* <h1>{note.type}</h1>
         <div className="img-container" style={{ backgroundImage: `url(${hasImage(note)})`, Width: '100%', Height: '100%'}}></div> */}
+        <div className="edit-area">
+            <button className='trash'>X</button>
+            <input type="color"/>
+            
+        </div>
 
 
     </section>

@@ -17,3 +17,12 @@
 .note-preview:hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
+
+.edit-area {
+    padding-top: 20px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}

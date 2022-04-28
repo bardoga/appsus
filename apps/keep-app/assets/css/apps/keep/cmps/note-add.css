@@ -1,0 +1,28 @@
+.note-add {
+    position: relative;
+    width: 50%;
+    margin: 32px auto 50px auto;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 1px 7px rgb(128, 128, 128);
+    border: none;
+}
+
+.note-add input {
+    width: 100%;
+    border: none;
+    padding: 4px 10px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+}
+
+
+/* .newnote textarea {
+    width: 100%;
+    border: none;
+    padding: 4px 10px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+} */
