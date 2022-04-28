@@ -1,7 +1,7 @@
 export class NoteFilter extends React.Component {
     state = {
         filterBy: {
-            img: '',
+            img: 'note-txt',
             text: '',
             vid: '',
             todo: '',

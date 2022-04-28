@@ -6,6 +6,7 @@
     border-radius: 7px;
     box-shadow: 0 1px 7px rgb(128, 128, 128);
     border: none;
+    position: relative;
 }
 
 .note-add input {
@@ -15,4 +16,17 @@
     outline: none;
     font-size: 1rem;
     resize: none;
+    /* position: relative */
+}
+
+.submit {
+    position: absolute;
+    top: 60%;
+    left: 95%;
+    border: none;
+    /* box-shadow: 0 0 10px 0; */
+}
+
+.submit:hover {
+    box-shadow: 0 0 5px 0;
 }

@@ -12,7 +12,7 @@ export const noteService = {
 
 }
 
-let notes;
+// let notes;
 const KEY = 'notesDB'
 
 
@@ -64,14 +64,14 @@ function update(notes) {
 
 
 function addNote(note) {
-    notes.unshift(note)
+    gNotes.unshift(note)
     _saveToStorage()
     return Promise.resolve(note)
 }
 
 
 function createNote(input, type) {
-    if (!input) return;
+    // if (!input) return;
     let note = {
         id: utilService.makeId(),
         type: type,
@@ -92,60 +92,34 @@ function createNote(input, type) {
 
 
 
-// const gNotes = [{
-//         id: "n101",
-//         type: "note-txt",
-//         isPinned: true,
-//         info: {
-//             txt: "Fullstack Me Baby!"
-//         },
-//         style: {
-//             backgroundColor: utilService.getRandomLightColor()
-//         }
-//     },
-//     {
-//         id: "LAA8N5",
-//         type: "note-txt",
-//         isPinned: false,
-//         info: {
-//             txt: "rere"
-//         },
-//         style: {
-//             backgroundColor: "#fff"
-//         }
-//     }
-// ]
+const gNotes = [{
+        id: "n101",
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: utilService.getRandomLightColor()
+        }
+    },
+    {
+        id: "LAA8N5",
+        type: "note-txt",
+        isPinned: false,
+        info: {
+            txt: "rere"
+        },
+        style: {
+            backgroundColor: "#fff"
+        }
+    }
+]
 
 
 function _createNotes() {
-    let notes = _loadFromStorage()
-    if (!notes || notes.length) {
-        notes = [{
-                    id: "n101",
-                    type: "note-txt",
-                    isPinned: true,
-                    info: {
-                        txt: "Fullstack Me Baby!"
-                    },
-                    style: {
-                        backgroundColor: utilService.getRandomLightColor()
-                    }
-                },
-                {
-                    id: "n102",
-                    type: "note-txt",
-                    info: {
-                        txt: "I've never used google keep!"
-                    },
-                    style: {
-                        backgroundColor: utilService.getRandomLightColor()
-                    }
-                },
-            ]
-            // gNotes = notes
-            // _saveToStorage()
-    }
-    return notes
+    const notes = gNotes
+    return gNotes
 }
 
 
@@ -154,8 +128,8 @@ function _createNotes() {
 
 
 
-function _saveToStorage(notes) {
-    storageService.saveToStorage(KEY, notes)
+function _saveToStorage() {
+    storageService.saveToStorage(KEY, gNotes)
 }
 
 function _loadFromStorage() {
