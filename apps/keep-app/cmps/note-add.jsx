@@ -44,7 +44,7 @@ export class NoteAdd extends React.Component {
 
     render() {
         const { nodeType } = this.state
-        console.log(nodeType)
+        // console.log(nodeType)
         return <section className="note-add">
             {/* <form className="newnote">
                 <input type="text" placeholder="Title" name="title" onSubmit={this.HandleChange} />
