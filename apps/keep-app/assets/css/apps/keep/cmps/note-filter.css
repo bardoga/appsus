@@ -12,4 +12,5 @@ form.keepForm input[type=text] {
     margin-top: 10px;
     margin-left: 25%;
     margin-right: 20px;
+    border-radius: 8px;
 }

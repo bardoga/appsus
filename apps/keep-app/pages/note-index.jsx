@@ -3,6 +3,7 @@ import { noteService } from '../services/note.service.js'
 
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteFilter } from '../cmps/note-filter.jsx'
+import {NoteAdd} from '../cmps/note-add.jsx'
 
 
 
@@ -23,7 +24,7 @@ export class NoteApp extends React.Component {
         filterBy:null,
     }
     componentDidMount() {
-        // console.log('Props from notesApp', this.state.notes)
+        // console.log('Props from notesApp', notes)
         this.loadNotes()
     }
 
@@ -59,6 +60,7 @@ export class NoteApp extends React.Component {
         return <section className="note-index">
             {/* <h2>Notes App</h2> */}
             <NoteFilter onSetFilter={this.onSetFilter} history={this.props.history}/>
+            <NoteAdd loadNotes={this.loadNotes}/>
             <NoteList notes = {this.notesToDisplay} />
 
         </section>

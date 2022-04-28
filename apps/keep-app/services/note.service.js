@@ -1,10 +1,13 @@
 import { storageService } from '../../../services/storage-service.js'
+import { utilService } from './util.service.js'
 
 
 
 export const noteService = {
     query,
     getById,
+    remove,
+    createNote,
 
 }
 
@@ -38,6 +41,44 @@ function getById() {
 }
 
 
+function remove(noteId) {
+    let notes = _loadFromStorage()
+    notes = notes.filter(note => note.id !== noteId)
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function _update(noteToAdd) {
+    let notes = _loadFromStorage()
+    const note = _createNote
+}
+
+
+function addNote(note) {
+    gNotes.unshift(note)
+    _saveToStorage()
+    return Promise.resolve(note)
+}
+
+
+function createNote(input, type) {
+    if (!input) return;
+    let note = {
+        id: utilService.makeId(),
+        type: type,
+        isPinned: false,
+        info: {
+            txt: input
+        },
+        style: {
+            backgroundColor: '#fff'
+        }
+    }
+
+    addNote(note)
+}
+
+
 
 
 const gNotes = [{
@@ -46,38 +87,30 @@ const gNotes = [{
         isPinned: true,
         info: {
             txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: utilService.getRandomLightColor()
         }
     },
     {
         id: "n102",
-        type: "note-img",
+        type: "note-txt",
         info: {
-            url: "https://previews.123rf.com/images/nnonthamand/nnonthamand1601/nnonthamand160100007/51360656-dark-trees-in-the-jungle.jpg",
-            title: "Bobi and Me"
+            txt: "I've never used google keep!"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: utilService.getRandomLightColor()
         }
     },
-    {
-        id: "n103",
-        type: "note-todos",
-        info: {
-            label: "Get my stuff together",
-            todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
-            ]
-        }
-    }
-];
+]
 
 
 
 
 
-function _saveToStorage(cars) {
-    storageService.saveToStorage(KEY, cars)
+
+function _saveToStorage() {
+    storageService.saveToStorage(KEY, gNotes)
 }
 
 function _loadFromStorage() {

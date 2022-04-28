@@ -1,0 +1,8 @@
+p textarea {
+    width: 100%;
+    border: none;
+    padding: 4px 10px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+}
