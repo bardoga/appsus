@@ -1,21 +1,30 @@
 export class MailSideBar extends React.Component {
-
-
-    render() {
-        return (
-            <section className="mail-side-bar flex column ">
-                <button className="mail-compose-btn " onClick={() => this.props.toggleIsCompose()} >+ Compose</button>
-                <ul>
-                    <li className="mail-inbox-btn" onClick={() => this.props.setCurrentMailBox('inbox') }><a> Inbox({this.props.unReadCounter})</a></li>
-                    <li className="mail-sent-btn" onClick={() => this.props.setCurrentMailBox('sent')}><a >Sent Mail </a></li>
-                    <li><a className="mail-drafts-btn">Drafts </a></li>
-                   
-                </ul>
-
-            </section>
-        )
-    }
-
-
-
+  render() {
+    return (
+      <div class="main__body">
+        <section className="sidebar">
+          <button
+            className="sidebar__compose"
+            onClick={() => this.props.toggleIsCompose()}
+          >
+            <span class="material-icons"> add </span> Compose
+          </button>
+          <div class="sidebarOption sidebarOption__active">
+            <span class="material-icons"> inbox </span>
+            <h3 onClick={() => this.props.setCurrentMailBox("inbox")}>
+              Inbox({this.props.unReadCounter})
+            </h3>
+          </div>
+          <div class="sidebarOption" >
+          <span class="material-icons"> near_me </span>
+          <h3 onClick={() => this.props.setCurrentMailBox("sent")}>Sent</h3>
+        </div>
+        <div class="sidebarOption">
+          <span class="material-icons"> note </span>
+          <h3>Drafts</h3>
+        </div>
+        </section>
+      </div>
+    );
+  }
 }

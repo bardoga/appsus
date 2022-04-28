@@ -2,6 +2,7 @@ export const utilService = {
   makeId,
   makeLorem,
   getRandomIntInclusive,
+  formatTxt,
 };
 
 function makeId(length = 6) {
@@ -63,4 +64,12 @@ function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+}
+
+function formatTxt(txt, chars) {
+  if (txt.length < chars) {
+    return txt;
+  } else {
+    return txt.substring(0, chars) + "...";
+  }
 }

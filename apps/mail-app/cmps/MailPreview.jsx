@@ -1,5 +1,7 @@
 import { MailDetails } from "../cmps/MailDetails.jsx";
 import { LongTxt } from "../cmps/LongTxt.jsx";
+import { utilService } from "../../../services/util-service.js";
+
 export class MailPreview extends React.Component {
   state = {
     isOpen: false,
@@ -27,22 +29,31 @@ export class MailPreview extends React.Component {
             });
           }}
         >
-          <div className="name">
-            {mail.type === "inbox" ? mail.from : mail.to}
+          <div class="emailRow">
+            <div class="emailRow__options">
+              <input type="checkbox" name="" id="" />
+              <span class="material-icons"> star_border </span>
+              <span class="material-icons"> label_important </span>
+            </div>
+            <h3 class="emailRow__title">
+              {mail.type === "inbox" ? mail.from : mail.to}
+            </h3>
+            <div class="emailRow__message">
+              <h4>
+                {utilService.formatTxt(mail.subject, 30)}
+                <span class="emailRow__description">
+                  {" "}
+                  - {utilService.formatTxt(mail.message, 60)}
+                </span>
+              </h4>
+            </div>
+            {/* <button className="mail-preview-btn" onClick={this.ondeleteEmail}>
+              <i className="fas fa-trash"></i>
+            </button> */}
+            <p class="emailRow__time">{mail.date}</p>
+            {this.state.isOpen && <MailDetails mail={mail} />}
           </div>
-          <div className="mail-subject">
-            <LongTxt txt={mail.subject} chars={30} />
-          </div>
-          <div className="mail-message">
-            <LongTxt txt={mail.message} chars={60} />
-          </div>
-          <button className="mail-preview-btn" onClick={this.ondeleteEmail}>
-            <i className="fas fa-trash"></i>
-          </button>
-          <div className="mail-time">{mail.date}</div>
         </div>
-
-        {this.state.isOpen && <MailDetails mail={mail} />}
       </React.Fragment>
     );
   }

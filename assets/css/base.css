@@ -1,17 +1,13 @@
 /* BASE */
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
 html {
   font-family: 'Barlow Condensed', sans-serif;;
 }
 
 body {
-  background-color: #ffffff;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 a {
