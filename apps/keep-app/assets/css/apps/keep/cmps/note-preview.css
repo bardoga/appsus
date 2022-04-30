@@ -4,8 +4,6 @@
 
 .note-preview {
     break-inside: avoid-column;
-    /* width: fit-content; */
-    /* margin-top: 50px; */
     margin: 16px;
     padding: 20px;
     width: 270px;
@@ -18,9 +16,8 @@
     background: #fff;
     white-space: pre-wrap;
     word-wrap: break-word;
-    /* margin-bottom: 10px; */
     border: 1px solid #e0e0e0;
-    position: relative;
+    /* position: relative; */
 }
 
 .note-preview:hover {
@@ -28,15 +25,16 @@
 }
 
 .edit-area {
-    padding: 20px;
+    /* padding: 20px; */
     font-size: 1rem;
-    top: 100;
-    right: 0;
+    /* top: 100; */
+    /* right: 0; */
+    padding-top: 20px;
 }
 
 .trash {
-    right: 0;
-    left: 0;
+    right: 100;
+    /* left: 0; */
     width: 40px;
 }
 
@@ -45,10 +43,3 @@
     border: none;
     height: 20px;
 }
-
-
-/* .note-img {
-     padding: 4; 
-
-
-} */

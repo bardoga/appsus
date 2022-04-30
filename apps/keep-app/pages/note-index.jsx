@@ -1,6 +1,5 @@
 import { noteService } from '../services/note.service.js'
 
-
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteFilter } from '../cmps/note-filter.jsx'
 import { NoteAdd } from '../cmps/note-add.jsx'
@@ -38,10 +37,7 @@ export class NoteApp extends React.Component {
     onDeleteNote = (noteId) => {
         console.log(noteId)
         let notes = this.state.notes
-        // this.setState({notes:notes.filter(note => noteId !== noteId)})
-        // console.log(noteId)
         noteService.deleteNote(noteId)
-        // this.setState({ notes: this.state.notes.filter(note => note.id !== noteId) })
         this.loadNotes()
 
     }

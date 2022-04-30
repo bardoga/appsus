@@ -4,8 +4,6 @@ export function NoteVid({ note }) {
             allowFullScreen
             title="Embedded youtube"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-
-
         ></iframe>
     </section>
 } 

@@ -1,17 +1,17 @@
-export function DynamicNote({ noteType, handleInputSubmit, isExpanded,handleSubmit }) {
+export function DynamicNote({ noteType, handleInputSubmit, isExpanded, handleSubmit }) {
     // console.log(noteType)
 
     if (noteType === 'note-txt') {
         return (<p>
 
-            <textarea name="text" id="text" rows={isExpanded ? 5 : 1} placeholder="Take a note..."  onKeyDown={handleInputSubmit}></textarea>
+            <textarea name="text" id="text" rows={isExpanded ? 5 : 1} placeholder="Take a note..." onKeyDown={handleInputSubmit}></textarea>
         </p>
         )
     }
     else if (noteType === 'note-todo') {
         return (
             <section className="note-todo">
-                <textarea name="list" id="list" rows={isExpanded ? 5 : 1} placeholder="Enter List items seperated by a comma" onKeyDown={handleInputSubmit}></textarea>
+                <textarea name="list" id="list" rows={isExpanded ? 3 : 1} placeholder="Enter List items seperated by a comma" onKeyDown={handleInputSubmit}></textarea>
             </section>
 
         )
