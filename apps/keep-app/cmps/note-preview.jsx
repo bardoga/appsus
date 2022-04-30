@@ -15,7 +15,7 @@ export class NotePreview extends React.Component {
 
     getColor(note) {
         let color = note.style
-        // console.log(note.backgroundColor)
+        console.log(note.backgroundColor)
         if (color) return color.backgroundColor
         // else {
         //     note.style['backgroundColor'] =  utilService.getRandomLightColor()
@@ -54,14 +54,20 @@ export class NotePreview extends React.Component {
     }
 
 
+
+    handleColor = ({target}) => {
+        console.log('color changing', target.value)
+        console.log('note - id', this.state.note.id)
+    }
+
     render() {
-        return (<section className="note-preview" style={{ backgroundColor: this.getColor(this.state) }}>
+        return (<section className="note-preview" style={{ backgroundColor: this.getColor(this.state.note) }}>
             {/* <h1>{note.id}</h1> */}
             <h2>{this.handleType(this.state.note)}</h2>
             {/* <h1>{note.type}</h1>
         <div className="img-container" style={{ backgroundImage: `url(${hasImage(note)})`, Width: '100%', Height: '100%'}}></div> */}
             <div className="edit-area">
-                <input type="color" className='pick-color'/>
+                <input type="color" className='pick-color' onChange={this.handleColor}/>
                 <button onClick={this.deleteNoteHandler} className='trash'>X</button>
 
             </div>

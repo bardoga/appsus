@@ -70,6 +70,11 @@ function addNote(note) {
 }
 
 
+function updateColor() {
+
+}
+
+
 function createNote(input, type) {
     // if (!input) return;
     let note = {
@@ -111,7 +116,7 @@ const gNotes = [{
             txt: "rere"
         },
         style: {
-            backgroundColor: "#fff"
+            backgroundColor: utilService.getRandomLightColor()
         }
     }
 ]
