@@ -6,7 +6,6 @@ export function NoteText({ note }) {
     }
     const res = isValidURL(note.info.txt)
 
-    // console.log(note)
     if (res === true) {
         return (
             <a href={note.info.txt} target="_blank">{note.info.txt}</a>

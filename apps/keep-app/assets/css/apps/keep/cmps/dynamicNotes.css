@@ -33,3 +33,21 @@ p textarea {
     font-size: 1rem;
     resize: none;
 }
+
+
+/* .note-img {
+    margin-top: 0;
+    padding: 0;
+} */
+
+.note-todo {
+    line-height: 20px;
+}
+
+.note-todo h1 {
+    font-size: 1rem;
+}
+
+.crossed-line {
+    text-decoration: line-through;
+}

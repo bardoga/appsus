@@ -15,13 +15,11 @@ export class NoteAdd extends React.Component {
     }
 
     componentDidMount() {
-        // console.log('component mounted from note-add', this.props)
         this.setState({ noteType: 'note-txt' })
     }
 
 
     HandleChange({ target }) {
-        // ev.preventDefault()
         const field = target.value
         console.log(field)
     }
@@ -29,7 +27,6 @@ export class NoteAdd extends React.Component {
 
     handleInputSubmit = (ev) => {
         if (ev.target.value.length === '') return
-        // console.log(ev.target.value.length)
         if (ev.target.value.length < 1) return
         if (ev.keyCode === 13) {
             ev.preventDefault()
@@ -43,23 +40,10 @@ export class NoteAdd extends React.Component {
     }
 
 
-    clearFields({target}) {
+    clearFields({ target }) {
         console.log(target)
         target.value = ''
     }
-
-
-    // handleSubmit = (ev) => {
-    //     console.log(ev)
-    //     let input = target.value
-    //     if (input === 0 && !input) return
-    //     noteService.createNote(target.value, this.state.noteType)
-    //     // console.log(ev.target.value)
-    //     this.props.loadNotes()
-    //     // this.clearFields(ev.target)
-    //     this.setState({ setExpanded: false, isExpanded: false })
-    // }
-
 
     handleExpanded = () => {
         console.log(this.state)
@@ -69,7 +53,6 @@ export class NoteAdd extends React.Component {
 
     handleType = (event) => {
         const type = event.target.value
-        // console.log(event.target.value)
         this.setState({ noteType: type })
         console.log(this.state.noteType)
     }
@@ -77,11 +60,11 @@ export class NoteAdd extends React.Component {
     render() {
         const { noteType } = this.state
         return <section className="note-add">
-            <button className="submit" onClick={this.handleSubmit}>
+            {/* <button className="submit" onClick={this.handleSubmit}>
                 <i className="material-icons">save</i>
-            </button>
+            </button> */}
             <div className="create-note">
-                <select name="notes-type" id="notes-type" onChange={this.handleType}>
+                <select className="type-selector" name="notes-type" id="notes-type" onChange={this.handleType}>
                     <option value="note-txt">Text</option>
                     <option value="note-img">Image</option>
                     <option value="note-vid">Video</option>

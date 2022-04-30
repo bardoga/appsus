@@ -10,7 +10,6 @@ export const noteService = {
     createNote,
     update,
     updateColor
-
 }
 
 // let notes;
@@ -18,7 +17,8 @@ const KEY = 'notesDB'
 
 function query(filterBy) {
     let notes = _loadFromStorage()
-    if (!notes) {
+    console.log(notes)
+    if ((!notes) || (notes.length === 0)) {
         notes = _createNotes()
         _saveToStorage(notes)
     }
@@ -52,9 +52,12 @@ function deleteNote(noteid) {
     return Promise.resolve()
 }
 
-function update(notes) {
+function update(noteId, note) {
     // let notes = _loadFromStorage()
-    _saveToStorage()
+    let noteIDX = gNotes.findIndex((note) => note.id === noteId)
+    if (noteIDX === -1) return
+    gNotes[noteIDX] = note
+    _saveToStorage(gNotes)
     return Promise.resolve()
 }
 
@@ -72,7 +75,6 @@ function updateColor(color, id) {
     let ans = note.then(function(result) {
         console.log(result)
         result.style.backgroundColor = color
-            // _saveToStorage(result)
         console.log('ans is...', ans)
         return Promise.resolve(ans)
     });
@@ -82,9 +84,6 @@ function updateColor(color, id) {
 
 
 function createNote(input, type) {
-    // console.log(type)
-    // console.log(input)
-    // if (!input) return;
     if (type === 'note-txt') {
         let note = {
             id: utilService.makeId(),
@@ -196,7 +195,7 @@ const gNotes = [{
         isPinned: false,
         info: {
             title: "React",
-            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSop-oEcLinR6-3roGHp4Ys5AoRpisDV2JCdQ&usqp=CAU",
+            url: "https://toppng.com/uploads/preview/react-logo-icon-11609374122d9vkbptqap.png",
         },
         style: {
             backgroundColor: utilService.getRandomLightColor()
@@ -223,7 +222,7 @@ const gNotes = [{
         type: "note-vid",
         isPinned: false,
         info: {
-            url: 'https://www.youtube.com/embed/AhbCYVILusc'
+            url: 'https://www.youtube.com/embed/Ey_K97x15ek'
         },
         style: {
             backgroundColor: utilService.getRandomLightColor()

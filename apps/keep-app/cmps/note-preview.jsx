@@ -5,12 +5,11 @@ import { DynamicNote } from './DynamicCmps/dynamicNote.jsx'
 export class NotePreview extends React.Component {
 
     state = {
-        note: this.props.note
+        note: this.props.note,
+        isMouseOver: false
     }
 
     componentDidMount() {
-        console.log(this.props)
-        // console.log('props from note preview', this.props)
     }
 
 
@@ -20,17 +19,8 @@ export class NotePreview extends React.Component {
         if (color) return color.backgroundColor
     }
 
-
-
-    hasImage = (note) => {
-        if (note.type === 'note-img') return note.info.url
-        else return ''
-    }
-
-
     deleteNoteHandler = () => {
         this.props.onDeleteNote(this.state.note.id)
-        // this.setState({ note: this.state.note })
 
     }
 
@@ -46,27 +36,41 @@ export class NotePreview extends React.Component {
     }
 
 
-    // handlePin = ({this.state.note})
+    HandleHover = () => {
+        this.setState({
+            isMouseOver: !this.state.isMouseOver
+        })
+
+    }
+
+    handlePin = () => {
+        this.setState({
+            note: {
+                ...this.state.note,
+                isPinned: !this.state.note.isPinned
+            }
+        }, () => {
+            noteService.update(this.state.note.id,
+                this.state.note)
+        });
+        this.props.loadNotes();
+
+    }
 
     render() {
-        const { note } = this.state
+        const { note, isMouseOver } = this.state
         return (
-            <section className="note-preview" style={{ backgroundColor: this.getColor(this.state.note) }}>
+            <section onMouseEnter={this.HandleHover} onMouseLeave={this.HandleHover} className="note-preview" style={{ backgroundColor: this.getColor(this.state.note) }}>
                 {<DynamicNote note={note} />}
+                <section className={`edit area ${!isMouseOver && 'edit-off'}`}>
+                    <div className="edit-area" >
+                        <i className='material-icons' onClick={this.handlePin}>push_pin</i>
+                        {/* <i className='material-icons'>palette</i> */}
+                        <input type="color" className='pick-color' onChange={this.handleColor} />
+                        <i className='material-icons trash' onClick={this.deleteNoteHandler}>delete</i>
 
-
-                <div className="edit-area">
-                    {/* <i className='material-symbols-rounded'>pin_drop</i>
-                     */}
-                    <i className='material-icons' onClick={this.handlePin}>push_pin</i>
-
-                    <input type="color" className='pick-color' onChange={this.handleColor} />
-                    {/* <input type="color" className='pick-color' onChange={this.handleColor} /> */}
-                    {/* <button onClick={this.deleteNoteHandler} className='trash'> */}
-                    <i className='material-icons trash' onClick={this.deleteNoteHandler}>delete</i>
-                    {/* </button> */}
-
-                </div>
+                    </div>
+                </section>
             </section>
         );
     }
