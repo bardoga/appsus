@@ -26,7 +26,10 @@ function deleteEmail(id) {
 }
 
 function loadIEmail(type) {
-  return Promise.resolve(mailList.filter((email) => email.type === type));
+  if (type !== "trash")
+    return Promise.resolve(mailList.filter((email) => email.type === type));
+
+  return Promise.resolve(mailList.filter((email) => email.trash));
 }
 
 function updateEmail(id, updateEmail) {
@@ -82,5 +85,15 @@ const mailList = [
     date: new Date().toLocaleDateString(),
     id: utilService.makeId(),
     type: "sent",
+  },
+  {
+    to: "YonatanSH",
+    subject: "SENT TO",
+    message:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    date: new Date().toLocaleDateString(),
+    id: utilService.makeId(),
+    type: "sent",
+    trash: true,
   },
 ];

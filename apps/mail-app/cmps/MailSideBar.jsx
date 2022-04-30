@@ -9,20 +9,38 @@ export class MailSideBar extends React.Component {
           >
             <span class="material-icons"> add </span> Compose
           </button>
-          <div class="sidebarOption sidebarOption__active">
+          <div
+            class={
+              this.props.currentMailBox === "inbox"
+                ? "sidebarOption sidebarOption__active"
+                : "sidebarOption"
+            }
+          >
             <span class="material-icons"> inbox </span>
             <h3 onClick={() => this.props.setCurrentMailBox("inbox")}>
               Inbox({this.props.unReadCounter})
             </h3>
           </div>
-          <div class="sidebarOption" >
-          <span class="material-icons"> near_me </span>
-          <h3 onClick={() => this.props.setCurrentMailBox("sent")}>Sent</h3>
-        </div>
-        <div class="sidebarOption">
-          <span class="material-icons"> note </span>
-          <h3>Drafts</h3>
-        </div>
+          <div
+            class={
+              this.props.currentMailBox === "sent"
+                ? "sidebarOption sidebarOption__active"
+                : "sidebarOption"
+            }
+          >
+            <span class="material-icons"> near_me </span>
+            <h3 onClick={() => this.props.setCurrentMailBox("sent")}>Sent</h3>
+          </div>
+          <div
+            class={
+              this.props.currentMailBox === "trash"
+                ? "sidebarOption sidebarOption__active"
+                : "sidebarOption"
+            }
+          >
+            <span class="material-icons"> deleted </span>
+            <h3 onClick={() => this.props.setCurrentMailBox("trash")}>Trash</h3>
+          </div>
         </section>
       </div>
     );

@@ -1,5 +1,5 @@
 import { MailDetails } from "../cmps/MailDetails.jsx";
-import { LongTxt } from "../cmps/LongTxt.jsx";
+import { MailContent } from "../cmps/MailContent.jsx";
 import { utilService } from "../../../services/util-service.js";
 
 export class MailPreview extends React.Component {
@@ -13,6 +13,12 @@ export class MailPreview extends React.Component {
     event.cancelBubble = true;
     this.props.deleteEmail(mail.id);
   };
+
+  closeModal = () => {
+    this.setState({ isOpen: false });
+  };
+  checkMail = (state) => {};
+
   render() {
     const { mail } = this.props;
     const mailClass =
@@ -31,7 +37,11 @@ export class MailPreview extends React.Component {
         >
           <div class="emailRow">
             <div class="emailRow__options">
-              <input type="checkbox" name="" id="" />
+              <input
+                type="checkbox"
+                checked={mail.checked}
+                onChange={this.checkMail(this.value)}
+              />
               <span class="material-icons"> star_border </span>
               <span class="material-icons"> label_important </span>
             </div>
@@ -51,7 +61,9 @@ export class MailPreview extends React.Component {
               <i className="fas fa-trash"></i>
             </button> */}
             <p class="emailRow__time">{mail.date}</p>
-            {this.state.isOpen && <MailDetails mail={mail} />}
+            {this.state.isOpen && (
+              <MailContent mail={mail} closeModal={this.closeModal} />
+            )}
           </div>
         </div>
       </React.Fragment>

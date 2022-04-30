@@ -13,6 +13,7 @@ export class MailApp extends React.Component {
     unReadCounter: 0,
     currentMailBox: "inbox",
     modal: { isShow: false, msg: null },
+    mailsToShow: [],
   };
 
   showModal = (msg = "Complete", time = 3000) => {
@@ -25,6 +26,25 @@ export class MailApp extends React.Component {
   componentDidMount() {
     this.refreshMailBox();
   }
+
+  checkAll = () => {
+    const mails = this.state.mailsToShow.map(
+      (mail) => (mail.checked = !mail.checked)
+    );
+
+    this.setState((prevState) => ({ ...prevState, mailsToShow: mails }));
+  };
+
+  moveToTrash = () => {
+    console.log("here");
+    const mails = this.state.mailsToShow.map((mail) => {
+      if (mail.checked) {
+        mail.trash = true;
+      }
+    });
+
+    this.setState((prevState) => ({ ...prevState, mailsToShow: mails }));
+  };
 
   refreshMailBox = () => {
     const { currentMailBox } = this.state;
@@ -96,16 +116,20 @@ export class MailApp extends React.Component {
     const { mailBox, isCompose } = this.state;
     if (mailBox.length === 0) return <div>Loading...</div>;
 
-    const mailsToShow = this.filteredMailBox();
-    mailsToShow.sort((a, b) => {
+    const mails = this.filteredMailBox();
+    mails.sort((a, b) => {
       return b.date - a.date;
     });
+
+    this.state.mailsToShow = mails;
+
     return (
       <section className="mail-app flex">
         {this.state.modal.isShow && <msgModal msg={this.state.modal.msg} />}
 
         <MailSideBar
           setCurrentMailBox={this.setCurrentMailBox}
+          currentMailBox={this.state.currentMailBox}
           toggleIsCompose={this.toggleIsCompose}
           unReadCounter={this.state.unReadCounter}
         />
@@ -114,7 +138,9 @@ export class MailApp extends React.Component {
           <MailFilter setFilter={this.setFilter} />
 
           <MailsList
-            mails={mailsToShow}
+            moveToTrash={this.moveToTrash}
+            checkAll={this.checkAll}
+            mails={this.state.mailsToShow}
             setReadState={this.setReadState}
             deleteEmail={this.deleteEmail}
           />

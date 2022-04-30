@@ -1,13 +1,20 @@
 import { MailPreview } from "./MailPreview.jsx";
-export function MailsList({ mails, setReadState, deleteEmail }) {
+
+export function MailsList({
+  mails,
+  setReadState,
+  deleteEmail,
+  checkAll,
+  moveToTrash,
+}) {
   return (
     <div class="emailList">
       <div class="emailList__settings">
         <div class="emailList__settingsLeft">
-          <input type="checkbox" />
-          <span class="material-icons"> arrow_drop_down </span>
-          <span class="material-icons"> redo </span>
-          <span class="material-icons"> more_vert </span>
+          <input type="checkbox" id="checkAll" onChange={checkAll} />
+          <button onClick={moveToTrash}>
+            <span class="material-icons"> delete </span>
+          </button>
         </div>
         <div class="emailList__settingsRight">
           <span class="material-icons"> chevron_left </span>

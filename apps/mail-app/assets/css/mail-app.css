@@ -291,26 +291,25 @@ input {
     transition: 1;
     flex-direction: column;
     width: 60%;
-    background-color: rgb(116, 116, 116);
     color: rgb(0, 0, 0);
     position:fixed;
     right:50px;
     bottom:0px;
     z-index: 999;
   }
-
-.compose-page *{
-  font-size: 1.3rem;
-}
-
   
-  .compose-form * {
-    background-color: rgb(210, 210, 210);
+  
+  .compose-form  {
+    background-color: white;
     color: rgb(0, 0, 0);
     padding:20px
+    
   }
 
-
+  .compose-header{
+    background-color: #202124;
+    color: white;
+  }
 
 
 
