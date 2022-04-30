@@ -30,8 +30,10 @@ export class NoteAdd extends React.Component {
 
 
     handleInputSubmit = (ev) => {
+        // if (ev.target.value.length === '') return
         if (ev.keyCode === 13) {
             noteService.createNote(ev.target.value, this.state.noteType)
+            console.log(ev.target.value)
             this.props.loadNotes()
             this.clearFields(ev.target)
         }
@@ -52,6 +54,7 @@ export class NoteAdd extends React.Component {
                     <textarea name="text" id="text" rows="3" placeholder="type your note..." onChange={this.HandleChange}></textarea>
                 </p>
             </form> */}
+            <button className="submit">Save</button>
             <div className="create-note">
                 <div className="note-input">
                     {<DynamicNote noteType={nodeType} handleInputSubmit={this.handleInputSubmit} />}
