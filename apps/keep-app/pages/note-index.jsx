@@ -16,7 +16,6 @@ export class NoteApp extends React.Component {
         filterBy: null,
     }
     componentDidMount() {
-        // console.log('Props from notesApp', notes)
         this.loadNotes()
     }
 
@@ -37,13 +36,13 @@ export class NoteApp extends React.Component {
     }
 
     onDeleteNote = (noteId) => {
+        console.log(noteId)
+        let notes = this.state.notes
+        // this.setState({notes:notes.filter(note => noteId !== noteId)})
         // console.log(noteId)
-    this.setState({notes:this.state.notes.filter(note => note.id !== noteId)} )
-        noteService.update(noteId)
+        noteService.deleteNote(noteId)
+        // this.setState({ notes: this.state.notes.filter(note => note.id !== noteId) })
         this.loadNotes()
-
-
-
 
     }
 
@@ -59,12 +58,10 @@ export class NoteApp extends React.Component {
 
     render() {
         const notes = this.state.notes
-        // console.log(notes)
         return <section className="note-index">
-            {/* <h2>Notes App</h2> */}
             <NoteFilter onSetFilter={this.onSetFilter} history={this.props.history} />
             <NoteAdd loadNotes={this.loadNotes} />
-            <NoteList notes={this.notesToDisplay} onDeleteNote={this.onDeleteNote} />
+            <NoteList notes={this.notesToDisplay} onDeleteNote={this.onDeleteNote} loadNotes={this.loadNotes}/>
 
         </section>
     }

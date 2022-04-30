@@ -1,4 +1,6 @@
+import { noteService } from '../services/note.service.js'
 import { utilService } from '../services/util.service.js'
+import { DynamicNote } from './DynamicCmps/dynamicNote.jsx'
 
 export class NotePreview extends React.Component {
 
@@ -7,72 +9,66 @@ export class NotePreview extends React.Component {
     }
 
     componentDidMount() {
-        console.log('props from note preview', this.props)
+        console.log(this.props)
+        // console.log('props from note preview', this.props)
     }
 
 
-    // console.log('props from preview',this.props)
 
     getColor(note) {
         let color = note.style
-        console.log(note.backgroundColor)
         if (color) return color.backgroundColor
-        // else {
-        //     note.style['backgroundColor'] =  utilService.getRandomLightColor()
-        //     return note.style.backgroundColor
-        // }
     }
 
 
 
     hasImage = (note) => {
-        if(note.type === 'note-img') return note.info.url
+        if (note.type === 'note-img') return note.info.url
         else return ''
     }
 
 
-    handleType = (note) => {
-        // console.log(note)
-        let type = note.type
-        if (type === 'note-txt')
-            return note.info.txt
-        // else if (type === 'note.todos') {
-        //     let todos = note.info.todos
-        //     let listItems = todos.map((todo) =>
-        //         <li>{todo}</li>)
-        //     return (
-        //         <ul>{listItems} i'm here</ul>
-        //     )
-    }
-
-
-
     deleteNoteHandler = () => {
-         this.props.onDeleteNote(this.state.note.id)
-        // console.log('note clicked ', id)
+        this.props.onDeleteNote(this.state.note.id)
+        // this.setState({ note: this.state.note })
 
     }
 
 
 
-    handleColor = ({target}) => {
-        console.log('color changing', target.value)
-        console.log('note - id', this.state.note.id)
+    handleColor = ({ target }, id = this.state.note.id) => {
+        console.log('color changing to...', target.value)
+        console.log('note - id', id)
+        noteService.updateColor(target.value, id)
+            .then(() => {
+                this.props.loadNotes()
+            })
     }
+
+
+    // handlePin = ({this.state.note})
 
     render() {
-        return (<section className="note-preview" style={{ backgroundColor: this.getColor(this.state.note) }}>
-            {/* <h1>{note.id}</h1> */}
-            <h2>{this.handleType(this.state.note)}</h2>
-            {/* <h1>{note.type}</h1>
-        <div className="img-container" style={{ backgroundImage: `url(${hasImage(note)})`, Width: '100%', Height: '100%'}}></div> */}
-            <div className="edit-area">
-                <input type="color" className='pick-color' onChange={this.handleColor}/>
-                <button onClick={this.deleteNoteHandler} className='trash'>X</button>
+        const { note } = this.state
+        return (
+            <section className="note-preview" style={{ backgroundColor: this.getColor(this.state.note) }}>
+                {<DynamicNote note={note} />}
 
-            </div>
-        </section>
-        )
+
+                <div className="edit-area">
+                    {/* <i className='material-symbols-rounded'>pin_drop</i>
+                     */}
+                    <i className='material-icons' onClick={this.handlePin}>push_pin</i>
+
+                    <input type="color" className='pick-color' onChange={this.handleColor} />
+                    {/* <input type="color" className='pick-color' onChange={this.handleColor} /> */}
+                    {/* <button onClick={this.deleteNoteHandler} className='trash'> */}
+                    <i className='material-icons trash' onClick={this.deleteNoteHandler}>delete</i>
+                    {/* </button> */}
+
+                </div>
+            </section>
+        );
     }
 }
 

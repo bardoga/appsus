@@ -7,18 +7,16 @@ export class NoteAdd extends React.Component {
 
     state = {
 
-        noteType: 'note-txt'
+        noteType: 'note-txt',
+        isExpanded: false,
+        setExpanded: false
+
 
     }
 
-
-
-
-
-
     componentDidMount() {
         // console.log('component mounted from note-add', this.props)
-        this.setState({noteType:'note-txt'})
+        this.setState({ noteType: 'note-txt' })
     }
 
 
@@ -30,34 +28,67 @@ export class NoteAdd extends React.Component {
 
 
     handleInputSubmit = (ev) => {
-        // if (ev.target.value.length === '') return
+        if (ev.target.value.length === '') return
+        // console.log(ev.target.value.length)
+        if (ev.target.value.length < 1) return
         if (ev.keyCode === 13) {
+            ev.preventDefault()
             noteService.createNote(ev.target.value, this.state.noteType)
-            console.log(ev.target.value)
+            console.log(ev)
             this.props.loadNotes()
-            this.clearFields(ev.target)
+            this.clearFields(ev)
+            this.setState({ setExpanded: false, isExpanded: false })
         }
+
     }
 
 
-    clearFields(target) {
+    clearFields({target}) {
+        console.log(target)
         target.value = ''
     }
 
+
+    // handleSubmit = (ev) => {
+    //     console.log(ev)
+    //     let input = target.value
+    //     if (input === 0 && !input) return
+    //     noteService.createNote(target.value, this.state.noteType)
+    //     // console.log(ev.target.value)
+    //     this.props.loadNotes()
+    //     // this.clearFields(ev.target)
+    //     this.setState({ setExpanded: false, isExpanded: false })
+    // }
+
+
+    handleExpanded = () => {
+        console.log(this.state)
+        this.setState({ setExpanded: true, isExpanded: true })
+
+    }
+
+    handleType = (event) => {
+        const type = event.target.value
+        // console.log(event.target.value)
+        this.setState({ noteType: type })
+        console.log(this.state.noteType)
+    }
+
     render() {
-        const { nodeType } = this.state
-        // console.log(nodeType)
+        const { noteType } = this.state
         return <section className="note-add">
-            {/* <form className="newnote">
-                <input type="text" placeholder="Title" name="title" onSubmit={this.HandleChange} />
-                <p>
-                    <textarea name="text" id="text" rows="3" placeholder="type your note..." onChange={this.HandleChange}></textarea>
-                </p>
-            </form> */}
-            <button className="submit">Save</button>
+            <button className="submit" onClick={this.handleSubmit}>
+                <i className="material-icons">save</i>
+            </button>
             <div className="create-note">
-                <div className="note-input">
-                    {<DynamicNote noteType={nodeType} handleInputSubmit={this.handleInputSubmit} />}
+                <select name="notes-type" id="notes-type" onChange={this.handleType}>
+                    <option value="note-txt">Text</option>
+                    <option value="note-img">Image</option>
+                    <option value="note-vid">Video</option>
+                    <option value="note-todo">List</option>
+                </select>
+                <div className="note-input" onClick={this.handleExpanded}>
+                    {<DynamicNote noteType={noteType} handleInputSubmit={this.handleInputSubmit} isExpanded={this.state.isExpanded} handleSubmit={this.handleSubmit} />}
                 </div>
             </div>
 
