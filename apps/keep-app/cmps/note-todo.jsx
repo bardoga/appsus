@@ -1,5 +1,3 @@
-// export function NoteTodo({ note }) {
-import { noteService } from "../services/note.service"
 export class NoteTodo extends React.Component {
 
     state = {
@@ -8,15 +6,12 @@ export class NoteTodo extends React.Component {
         strikeThrough: []
     }
 
-
-
-
     handleClick = (ev) => {
         let value = ev.target
+        value.classList.toggle('crossed-line')
         // console.log(this.state.note.info.todos)
         // let textlist = this.state.note.info.todos
         // console.log(idx)
-        value.classList.toggle('crossed-line')
         // this.setState({this.state.note.info.todos[idx]})
         
     }

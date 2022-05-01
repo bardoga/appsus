@@ -1,4 +1,4 @@
-export function DynamicNoteType({ noteType, handleInputSubmit, isExpanded}) {
+export function DynamicNoteType({ noteType, handleInputSubmit, isExpanded }) {
 
     if (noteType === 'note-txt') {
         return (<p>

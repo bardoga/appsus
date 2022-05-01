@@ -4,7 +4,6 @@ import { NoteTodo } from "../note-todo.jsx"
 import { NoteVid } from "../note-vid.jsx"
 
 export function DynamicNote({ note }) {
-    // console.log(note.type)
     switch (note.type) {
         case 'note-txt':
             return <NoteText note={note} />
