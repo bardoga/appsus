@@ -1,10 +1,8 @@
 import { noteService } from '../services/note.service.js'
-// import { utilService } from '../services/util.service.js'
-import { DynamicNote } from './DynamicCmps/dynamicNote.jsx'
+import { DynamicNote } from './dynamicCmps/DynamicNote.jsx'
 
 export class NotePreview extends React.Component {
     mouseMoveRef = React.createRef()
-
     state = {
         note: this.props.note,
         isHovering: false

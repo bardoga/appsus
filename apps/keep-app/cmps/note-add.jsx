@@ -1,5 +1,5 @@
-import { noteService, utilService } from "../services/note.service.js"
-import { DynamicNote } from "./dynamicNotes.jsx"
+import { noteService} from "../services/note.service.js"
+import { DynamicNoteType } from "./dynamicNotesType.jsx"
 
 
 export class NoteAdd extends React.Component {
@@ -78,7 +78,7 @@ export class NoteAdd extends React.Component {
                     </span>
                 </div>
                 <div className="note-input" onClick={this.handleExpanded}>
-                    {<DynamicNote noteType={noteType} handleInputSubmit={this.handleInputSubmit} isExpanded={this.state.isExpanded} handleSubmit={this.handleSubmit} />}
+                    {<DynamicNoteType noteType={noteType} handleInputSubmit={this.handleInputSubmit} isExpanded={this.state.isExpanded} handleSubmit={this.handleSubmit} />}
                 </div>
             </div>
         </section>
