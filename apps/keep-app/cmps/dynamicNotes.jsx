@@ -20,7 +20,7 @@ export function DynamicNote({ noteType, handleInputSubmit, isExpanded, handleSub
     else if (noteType === 'note-img') {
         return (
             <section className="note-img">
-                <textarea name="img" id="img" rows={isExpanded ? 1 : 1} placeholder="Enter image url followd by a label" onKeyDown={handleInputSubmit}></textarea>
+                <textarea name="img" id="img" rows={isExpanded ? 1 : 1} placeholder="Enter image url" onKeyDown={handleInputSubmit}></textarea>
             </section>
         )
     }
@@ -28,7 +28,7 @@ export function DynamicNote({ noteType, handleInputSubmit, isExpanded, handleSub
     else if (noteType === 'note-vid') {
         return (
             <section className="note-vid">
-                <textarea name="vid" id="vid" rows={isExpanded ? 1 : 1} placeholder='Enter video url followd by a label' onKeyDown={handleInputSubmit}></textarea>
+                <textarea name="vid" id="vid" rows={isExpanded ? 1 : 1} placeholder='Enter video url' onKeyDown={handleInputSubmit}></textarea>
             </section>
         )
     }

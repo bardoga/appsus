@@ -1,17 +1,39 @@
 import { noteService } from '../services/note.service.js'
-import { utilService } from '../services/util.service.js'
+// import { utilService } from '../services/util.service.js'
 import { DynamicNote } from './DynamicCmps/dynamicNote.jsx'
 
 export class NotePreview extends React.Component {
+    mouseMoveRef = React.createRef()
 
     state = {
         note: this.props.note,
-        isMouseOver: false
+        isHovering: false
     }
 
     componentDidMount() {
         console.log('component mounted from preview...')
+        window.addEventListener("mousemove", this.checkHover, true);
     }
+
+    componentWillUnmount(){
+        window.removeEventListener('mousemove', this.checkHover,true)
+    }
+    setHover = () => this.setState({ isHovering: true });
+    setUnhover = () => this.setState({ isHovering: false });
+    checkHover = e => {
+        if (this.mouseMoveRef.current) {
+          const { isHovering } = this.state;
+          const mouseOver = this.mouseMoveRef.current.contains(e.target);
+          if (!isHovering && mouseOver) {
+            this.setHover();
+          }
+    
+          if (isHovering && !mouseOver) {
+            this.setUnhover();
+          }
+        }
+      };
+  
 
     getColor(note) {
         let color = note.style
@@ -38,20 +60,10 @@ export class NotePreview extends React.Component {
                 })
 
         });
-        this.setState({
-            isMouseOver: false
-        })
     }
 
-
-
-    HandleHover = () => {
-        this.setState({
-            isMouseOver: !this.state.isMouseOver
-        })
-    }
-
-    handlePin = () => {
+    handlePin = (ev) => {
+        ev.stopPropagation()
         this.setState({
             note: {
                 ...this.state.note,
@@ -64,9 +76,6 @@ export class NotePreview extends React.Component {
                     this.props.loadNotes()
                 })
         });
-        this.setState({
-            isMouseOver: false
-        })
     }
 
 
@@ -74,21 +83,22 @@ export class NotePreview extends React.Component {
         console.log(this.state.note)
         noteService.copyNote(this.state.note)
         this.props.loadNotes()
-        
+
     }
 
     render() {
-        const { note, isMouseOver } = this.state
+        const { note, isHovering } = this.state
         return (
-            <section onMouseEnter={this.HandleHover} onMouseLeave={this.HandleHover} className="note-preview" style={{ backgroundColor: this.getColor(this.state.note) }}>
+            <section ref={this.mouseMoveRef}  onMouseEnter={this.setHover} onMouseLeave={this.setUnhover} className="note-preview" style={{ backgroundColor: this.getColor(this.state.note) }}>
                 <DynamicNote note={note} />
-                <section className={`edit area ${!isMouseOver && 'edit-off'}`}>
+                <section className={`edit area ${!isHovering && 'edit-off'}`}>
                     <div className="edit-area" >
                         <i className='material-icons' onClick={this.handlePin}>push_pin</i>
                         <input type="color" className='pick-color' onChange={this.handleColor} />
-                        <span className="material-symbols-outlined" onClick={this.handleCopy}>
-                            content_copy
+                        <span className="material-icons" onClick={this.handleCopy}>
+                            file_copy
                         </span>
+
                         <i className='material-icons trash' onClick={this.deleteNoteHandler}>delete</i>
 
                     </div>

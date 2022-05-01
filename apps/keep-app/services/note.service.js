@@ -121,7 +121,7 @@ function createNote(input, type) {
             type: "note-img",
             isPinned: false,
             info: {
-                title: "React",
+                title: '',
                 url: input,
             },
             style: {
@@ -252,7 +252,7 @@ function _createNotes() {
             type: "note-txt",
             isPinned: false,
             info: {
-                txt: "elon musk"
+                txt: "i love elon musk!!!!"
             },
             style: {
                 backgroundColor: utilService.getRandomLightColor()
@@ -263,7 +263,7 @@ function _createNotes() {
             type: "note-img",
             isPinned: false,
             info: {
-                title: "React",
+                title: "",
                 url: "https://toppng.com/uploads/preview/react-logo-icon-11609374122d9vkbptqap.png",
             },
             style: {
@@ -275,7 +275,7 @@ function _createNotes() {
             type: "note-todo",
             isPinned: false,
             info: {
-                label: "Get my stuff together",
+                label: "Todos",
                 todos: [
                     { txt: "Driving liscence", done: false },
                     { txt: "Coding power", done: false }
@@ -285,7 +285,103 @@ function _createNotes() {
             style: {
                 backgroundColor: utilService.getRandomLightColor()
             }
-        }
+        }, {
+            id: utilService.makeId(),
+            type: "note-todo",
+            isPinned: false,
+            info: {
+                label: "Todos",
+                todos: [
+                    { txt: "lorem ipsum", done: false },
+                    { txt: "h3tjnh35hb2gb53ibhgi32", done: false }
+                ]
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }, {
+            id: utilService.makeId(),
+            type: "note-img",
+            isPinned: true,
+            info: {
+                // title: "i love elon musk!!!!",
+                url: "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80"
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }, {
+            id: utilService.makeId(),
+            type: "note-img",
+            isPinned: false,
+            info: {
+                title: '',
+                url: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80'
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }, {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "i love elon musk!!!!"
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }, {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "gnurtnhu3ethnerunhiwrhbiwqrhbiwhi3wrwrihiwrhiwrhiwrhiwrhwirhgiwrhiwrigwrihgiwrhgiwrhgiwhgwirhgwihgwihgi"
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }, {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "pogchamp"
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }, {
+            id: utilService.makeId(),
+            type: "note-vid",
+            isPinned: true,
+            info: {
+                url: "https://www.youtube.com/watch?v=V44t_SxTbFE"
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }, {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "i love notes!!!!!!!!!"
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }, {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                txt: "dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in"
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        },
     ]
 }
 
