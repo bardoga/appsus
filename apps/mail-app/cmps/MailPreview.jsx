@@ -8,16 +8,14 @@ export class MailPreview extends React.Component {
     mailClass: "mail-mail-preview flex space-between",
   };
 
-  ondeleteEmail = (event) => {
-    const { mail } = this.props;
-    event.cancelBubble = true;
-    this.props.deleteEmail(mail.id);
-  };
-
   closeModal = () => {
     this.setState({ isOpen: false });
   };
-  checkMail = (state) => {};
+
+  checkMail = () => {
+    const { mail } = this.props;
+    this.props.checkMail(mail.id);
+  };
 
   render() {
     const { mail } = this.props;
@@ -35,32 +33,30 @@ export class MailPreview extends React.Component {
             });
           }}
         >
-          <div class="emailRow">
-            <div class="emailRow__options">
+          <div className="emailRow">
+            <div className="emailRow__options">
               <input
                 type="checkbox"
                 checked={mail.checked}
-                onChange={this.checkMail(this.value)}
+                onChange={this.checkMail}
               />
-              <span class="material-icons"> star_border </span>
-              <span class="material-icons"> label_important </span>
+              <span className="material-icons"> star_border </span>
+              <span className="material-icons"> label_important </span>
             </div>
-            <h3 class="emailRow__title">
+            <h3 className="emailRow__title">
               {mail.type === "inbox" ? mail.from : mail.to}
             </h3>
-            <div class="emailRow__message">
+            <div className="emailRow__message">
               <h4>
                 {utilService.formatTxt(mail.subject, 30)}
-                <span class="emailRow__description">
+                <span className="emailRow__description">
                   {" "}
                   - {utilService.formatTxt(mail.message, 60)}
                 </span>
               </h4>
             </div>
-            {/* <button className="mail-preview-btn" onClick={this.ondeleteEmail}>
-              <i className="fas fa-trash"></i>
-            </button> */}
-            <p class="emailRow__time">{mail.date}</p>
+
+            <p className="emailRow__time">{mail.date}</p>
             {this.state.isOpen && (
               <MailContent mail={mail} closeModal={this.closeModal} />
             )}

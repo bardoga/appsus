@@ -27,7 +27,9 @@ function deleteEmail(id) {
 
 function loadIEmail(type) {
   if (type !== "trash")
-    return Promise.resolve(mailList.filter((email) => email.type === type));
+    return Promise.resolve(
+      mailList.filter((email) => email.type === type && !email.trash)
+    );
 
   return Promise.resolve(mailList.filter((email) => email.trash));
 }

@@ -3,7 +3,7 @@ import { MailsList } from "../cmps/MailsList.jsx";
 import { ComposeMail } from "./compose-mail.jsx";
 import { MailFilter } from "../cmps/MailFilter.jsx";
 import { MailSideBar } from "../cmps/MailSideBar.jsx";
-import { msgModal } from "../../../cmps/msg-modal.jsx";
+import { MsgModal } from "../../../cmps/MsgModal.jsx";
 
 export class MailApp extends React.Component {
   state = {
@@ -36,14 +36,29 @@ export class MailApp extends React.Component {
   };
 
   moveToTrash = () => {
-    console.log("here");
     const mails = this.state.mailsToShow.map((mail) => {
       if (mail.checked) {
         mail.trash = true;
+        mail.checked = false;
       }
+      return mail;
     });
 
     this.setState((prevState) => ({ ...prevState, mailsToShow: mails }));
+    this.refreshMailBox();
+  };
+
+  removeFromTrash = () => {
+    const mails = this.state.mailsToShow.map((mail) => {
+      if (mail.checked) {
+        mail.trash = false;
+        mail.checked = false;
+      }
+      return mail;
+    });
+
+    this.setState((prevState) => ({ ...prevState, mailsToShow: mails }));
+    this.refreshMailBox();
   };
 
   refreshMailBox = () => {
@@ -98,11 +113,15 @@ export class MailApp extends React.Component {
     this.setState({ isCompose: !this.state.isCompose });
   };
 
-  deleteEmail = (id) => {
-    return mailService.deleteEmail(id).then(() => {
-      this.showModal("Mail Deleted", 3000);
-      return this.refreshMailBox();
+  checkMail = (id) => {
+    const mails = this.state.mailsToShow.map((mail) => {
+      if (mail.id === id) {
+        mail.checked = !mail.checked;
+      }
+      return mail;
     });
+
+    this.setState((prevState) => ({ ...prevState, mailsToShow: mails }));
   };
 
   createEmail = (mail) => {
@@ -114,7 +133,6 @@ export class MailApp extends React.Component {
 
   render() {
     const { mailBox, isCompose } = this.state;
-    if (mailBox.length === 0) return <div>Loading...</div>;
 
     const mails = this.filteredMailBox();
     mails.sort((a, b) => {
@@ -125,7 +143,7 @@ export class MailApp extends React.Component {
 
     return (
       <section className="mail-app flex">
-        {this.state.modal.isShow && <msgModal msg={this.state.modal.msg} />}
+        {this.state.modal.isShow && <MsgModal msg={this.state.modal.msg} />}
 
         <MailSideBar
           setCurrentMailBox={this.setCurrentMailBox}
@@ -138,11 +156,13 @@ export class MailApp extends React.Component {
           <MailFilter setFilter={this.setFilter} />
 
           <MailsList
+            removeFromTrash={this.removeFromTrash}
             moveToTrash={this.moveToTrash}
             checkAll={this.checkAll}
             mails={this.state.mailsToShow}
             setReadState={this.setReadState}
-            deleteEmail={this.deleteEmail}
+            checkMail={this.checkMail}
+            currentMailBox={this.state.currentMailBox}
           />
           {isCompose && (
             <ComposeMail

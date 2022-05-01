@@ -3,40 +3,41 @@ import { MailPreview } from "./MailPreview.jsx";
 export function MailsList({
   mails,
   setReadState,
-  deleteEmail,
+  checkMail,
   checkAll,
   moveToTrash,
+  removeFromTrash,
+  currentMailBox,
 }) {
+  const trashBtn =
+    currentMailBox !== "trash" ? (
+      <button onClick={moveToTrash}>
+        <span className="material-icons"> delete </span>
+      </button>
+    ) : (
+      <button onClick={removeFromTrash}>
+        <span className="material-icons"> undo </span>
+      </button>
+    );
+
   return (
-    <div class="emailList">
-      <div class="emailList__settings">
-        <div class="emailList__settingsLeft">
+    <div className="emailList">
+      <div className="emailList__settings">
+        <div className="emailList__settingsLeft">
           <input type="checkbox" id="checkAll" onChange={checkAll} />
-          <button onClick={moveToTrash}>
-            <span class="material-icons"> delete </span>
-          </button>
+          {trashBtn}
         </div>
-        <div class="emailList__settingsRight">
-          <span class="material-icons"> chevron_left </span>
-          <span class="material-icons"> chevron_right </span>
-          <span class="material-icons"> keyboard_hide </span>
-          <span class="material-icons"> settings </span>
+        <div className="emailList__settingsRight">
+          <span className="material-icons"> chevron_left </span>
+          <span className="material-icons"> chevron_right </span>
+          <span className="material-icons"> keyboard_hide </span>
+          <span className="material-icons"> settings </span>
         </div>
       </div>
-      <div class="emailList__sections">
-        <div class="section section__selected">
-          <span class="material-icons"> inbox </span>
+      <div className="emailList__sections">
+        <div className="section section__selected">
+          <span className="material-icons"> inbox </span>
           <h4>Primary</h4>
-        </div>
-
-        <div class="section">
-          <span class="material-icons"> people </span>
-          <h4>Social</h4>
-        </div>
-
-        <div class="section">
-          <span class="material-icons"> local_offer </span>
-          <h4>Promotions</h4>
         </div>
       </div>
       <section>
@@ -46,7 +47,7 @@ export function MailsList({
               mail={mail}
               key={mail.id}
               setReadState={setReadState}
-              deleteEmail={deleteEmail}
+              checkMail={checkMail}
             />
           );
         })}
