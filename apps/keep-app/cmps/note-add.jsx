@@ -18,13 +18,6 @@ export class NoteAdd extends React.Component {
         this.setState({ noteType: 'note-txt' })
     }
 
-
-    HandleChange({ target }) {
-        const field = target.value
-        // console.log(field)
-    }
-
-
     handleInputSubmit = (ev) => {
         if (ev.target.value.length === '') return
         if (ev.target.value.length < 1) return

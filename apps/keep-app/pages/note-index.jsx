@@ -1,7 +1,7 @@
 import { noteService } from '../services/note.service.js'
 
 import { NoteList } from "../cmps/note-list.jsx"
-import { NoteFilter } from '../cmps/note-filter.jsx'
+// import { NoteFilter } from '../cmps/note-filter.jsx'
 import { NoteAdd } from '../cmps/note-add.jsx'
 
 
@@ -19,8 +19,8 @@ export class NoteApp extends React.Component {
     }
 
     loadNotes = () => {
-        noteService.query(this.state.notes)
-            .then(notes => {
+        noteService.query()
+            .then((notes) => {
                 this.setState({ notes })
             })
     }
@@ -67,7 +67,7 @@ export class NoteApp extends React.Component {
     // }
 
     render() {
-        const {notes} = this.state.notes
+        const { notes } = this.state;
         const pinnedNotes = this.getPinnedNotes()
         const UnpinnedNotes = this.getUnPinnedNotes()
         return <section className="note-index">

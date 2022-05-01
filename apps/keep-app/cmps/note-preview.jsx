@@ -13,12 +13,6 @@ export class NotePreview extends React.Component {
         console.log('component mounted from preview...')
     }
 
-    //     componentDidUpdate(prevProps,prevState) {
-    //         console.log(prevState)
-    // }
-
-
-
     getColor(note) {
         let color = note.style
         if (color) return color.backgroundColor
@@ -29,24 +23,35 @@ export class NotePreview extends React.Component {
 
     }
 
-
     handleColor = ({ target }, noteid = this.state.note.id) => {
-        noteService.updateColor(target.value, noteid)
-            .then(() => {
-                this.props.loadNotes()
-            })
+        this.setState({
+            note: {
+                ...this.state.note,
+                style: {
+                    backgroundColor: target
+                }
+            }
+        }, () => {
+            noteService.updateColor(target.value, noteid)
+                .then(() => {
+                    this.props.loadNotes()
+                })
+
+        });
+        this.setState({
+            isMouseOver: false
+        })
     }
+
 
 
     HandleHover = () => {
         this.setState({
             isMouseOver: !this.state.isMouseOver
         })
-
     }
 
     handlePin = () => {
-        // debugger
         this.setState({
             note: {
                 ...this.state.note,
@@ -54,11 +59,22 @@ export class NotePreview extends React.Component {
             }
         }, () => {
             console.log(this.state.note)
-            noteService.update(this.state.note.id,
+            noteService.updateNote(this.state.note.id,
                 this.state.note).then(() => {
                     this.props.loadNotes()
                 })
         });
+        this.setState({
+            isMouseOver: false
+        })
+    }
+
+
+    handleCopy = () => {
+        console.log(this.state.note)
+        noteService.copyNote(this.state.note)
+        this.props.loadNotes()
+        
     }
 
     render() {
@@ -69,8 +85,10 @@ export class NotePreview extends React.Component {
                 <section className={`edit area ${!isMouseOver && 'edit-off'}`}>
                     <div className="edit-area" >
                         <i className='material-icons' onClick={this.handlePin}>push_pin</i>
-                        {/* <i className='material-icons'>palette</i> */}
                         <input type="color" className='pick-color' onChange={this.handleColor} />
+                        <span className="material-symbols-outlined" onClick={this.handleCopy}>
+                            content_copy
+                        </span>
                         <i className='material-icons trash' onClick={this.deleteNoteHandler}>delete</i>
 
                     </div>
