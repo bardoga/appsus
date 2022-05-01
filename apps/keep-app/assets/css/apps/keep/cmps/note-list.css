@@ -1,20 +1,6 @@
 .note-list-container {
-    /* display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 50px;
-    justify-content: center; */
-    /* column-count: 3;
-    /* column-gap: 100px; 
-    margin-top: 40px;
-    /* display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    align-content: center; */
-    /* column-width: 250px; */
     gap: 30px;
     columns: 300px 5;
-    /* margin: 0 auto; */
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
@@ -24,4 +10,16 @@
 .note-list h1 {
     text-align: center;
     font-weight: 800;
+}
+
+.note-list-container h1 {
+    text-align: center;
+    /* margin-top: 40%; */
+    /* margin-bottom: 10px; */
+}
+
+@media (max-width: 676px) {
+    .note-list-container {
+        columns: 300 1;
+    }
 }

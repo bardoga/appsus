@@ -9,7 +9,6 @@ export class NoteFilter extends React.Component {
         }
     }
 
-
     inputRef = React.createRef()
 
     componentDidMount() {
@@ -17,8 +16,6 @@ export class NoteFilter extends React.Component {
         // console.log('input ref', this.inputRef)
         // this.inputRef.current.focus()
     }
-
-
 
 
     handleChange = ({ target }) => {

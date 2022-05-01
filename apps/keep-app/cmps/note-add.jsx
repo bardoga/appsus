@@ -21,7 +21,7 @@ export class NoteAdd extends React.Component {
 
     HandleChange({ target }) {
         const field = target.value
-        console.log(field)
+        // console.log(field)
     }
 
 
@@ -31,7 +31,7 @@ export class NoteAdd extends React.Component {
         if (ev.keyCode === 13) {
             ev.preventDefault()
             noteService.createNote(ev.target.value, this.state.noteType)
-            console.log(ev)
+            // console.log(ev)
             this.props.loadNotes()
             this.clearFields(ev)
             this.setState({ setExpanded: false, isExpanded: false })
@@ -39,14 +39,12 @@ export class NoteAdd extends React.Component {
 
     }
 
-
     clearFields({ target }) {
         console.log(target)
         target.value = ''
     }
 
     handleExpanded = () => {
-        console.log(this.state)
         this.setState({ setExpanded: true, isExpanded: true })
 
     }
@@ -54,32 +52,42 @@ export class NoteAdd extends React.Component {
     handleType = (event) => {
         const type = event.target.value
         this.setState({ noteType: type })
-        console.log(this.state.noteType)
     }
 
+    setText = () => {
+        this.setState({ noteType: 'note-txt' })
+    }
+    setImg = () => {
+        this.setState({ noteType: 'note-img' })
+    }
+    setList = () => {
+        this.setState({ noteType: 'note-todo' })
+    }
+    setVid = () => {
+        this.setState({ noteType: 'note-vid' })
+    }
     render() {
         const { noteType } = this.state
         return <section className="note-add">
-            {/* <button className="submit" onClick={this.handleSubmit}>
-                <i className="material-icons">save</i>
-            </button> */}
             <div className="create-note">
-                <select className="type-selector" name="notes-type" id="notes-type" onChange={this.handleType}>
-                    <option value="note-txt">Text</option>
-                    <option value="note-img">Image</option>
-                    <option value="note-vid">Video</option>
-                    <option value="note-todo">List</option>
-                </select>
+                <div className="types-selector">
+                    <span className="material-symbols-outlined puki" onClick={this.setText}>   {/* BAD WAY - FIND A BETTER WAY TO GET SPANS VALUE */}
+                        text_fields
+                    </span>
+                    <span className="material-symbols-outlined puki" onClick={this.setImg}>
+                        image
+                    </span>
+                    <span className="material-symbols-outlined puki" onClick={this.setList}>
+                        list
+                    </span>
+                    <span className="material-symbols-outlined puki" onClick={this.setVid}>
+                        youtube_tv
+                    </span>
+                </div>
                 <div className="note-input" onClick={this.handleExpanded}>
                     {<DynamicNote noteType={noteType} handleInputSubmit={this.handleInputSubmit} isExpanded={this.state.isExpanded} handleSubmit={this.handleSubmit} />}
                 </div>
             </div>
-
         </section>
-
-
-
     }
-
-
 }

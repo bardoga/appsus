@@ -8,12 +8,18 @@ export function NoteText({ note }) {
 
     if (res === true) {
         return (
-            <a href={note.info.txt} target="_blank">{note.info.txt}</a>
+            <h1 className="note-txt-link">
+                <a href={note.info.txt} target="_blank" > { note.info.txt }</a >
+            </h1>
+            // <a href={note.info.txt} target="_blank" className="note-txt-link"> { note.info.txt }</a >
         )
-    }
+}
     else {
-        return (
+    return (
+        <section className="note-txt">
             <h1> {note.info.txt}</h1 >
-        )
-    }
+        </section>
+        // <h1> {note.info.txt}</h1 >
+    )
+}
 }

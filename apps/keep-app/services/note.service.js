@@ -14,6 +14,7 @@ export const noteService = {
 
 // let notes;
 const KEY = 'notesDB'
+let notes;
 
 function query(filterBy) {
     let notes = _loadFromStorage()
@@ -39,7 +40,7 @@ function query(filterBy) {
 function getById(noteId) {
     const notes = _loadFromStorage()
     const note = notes.find(note => noteId === note.id)
-    return Promise.resolve(note)
+    return note;
 }
 
 
@@ -63,24 +64,26 @@ function update(noteId, note) {
 
 
 function addNote(note) {
-    gNotes.unshift(note)
-    _saveToStorage(gNotes)
+    notes = _loadFromStorage()
+
+    notes.unshift(note)
+    _saveToStorage(notes)
     return Promise.resolve()
 }
 
 
-function updateColor(color, id) {
-    let note = getById(id)
-    if (!note) return
-    let ans = note.then(function(result) {
-        console.log(result)
-        result.style.backgroundColor = color
-        console.log('ans is...', ans)
-        return Promise.resolve(ans)
-    });
-
-
+function updateColor(color, noteid) {
+    return query().then(notes => {
+        const note = notes.find(note => note.id === noteid)
+        note.style.backgroundColor = color
+        _saveToStorage(notes)
+        return notes;
+    })
 }
+
+
+
+
 
 
 function createNote(input, type) {
@@ -93,7 +96,7 @@ function createNote(input, type) {
                 txt: input
             },
             style: {
-                backgroundColor: '#fff'
+                backgroundColor: utilService.getRandomLightColor()
             }
         }
         addNote(note)
@@ -107,7 +110,7 @@ function createNote(input, type) {
                 todos: spreadInfo(input)
             },
             style: {
-                backgroundColor: '#fff'
+                backgroundColor: utilService.getRandomLightColor()
             }
         }
         addNote(note)
@@ -170,9 +173,9 @@ function spreadInfo(input) {
 const gNotes = [{
         id: utilService.makeId(),
         type: "note-txt",
-        isPinned: true,
+        isPinned: false,
         info: {
-            txt: "Fullstack Me Baby!"
+            txt: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
         },
         style: {
             backgroundColor: utilService.getRandomLightColor()
@@ -217,24 +220,75 @@ const gNotes = [{
             backgroundColor: utilService.getRandomLightColor()
         }
     },
-    {
-        id: utilService.makeId(),
-        type: "note-vid",
-        isPinned: false,
-        info: {
-            url: 'https://www.youtube.com/embed/Ey_K97x15ek'
-        },
-        style: {
-            backgroundColor: utilService.getRandomLightColor()
-        }
-    }
+    // {
+    //     id: utilService.makeId(),
+    //     type: "note-vid",
+    //     isPinned: false,
+    //     info: {
+    //         url: 'https://www.youtube.com/embed/Ey_K97x15ek'
+    //     },
+    //     style: {
+    //         backgroundColor: utilService.getRandomLightColor()
+    //     }
+    // }
 ]
 
 
 function _createNotes() {
-    let notes = gNotes
-    return notes
+    return [{
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        },
+        {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "elon musk"
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        },
+        {
+            id: utilService.makeId(),
+            type: "note-img",
+            isPinned: false,
+            info: {
+                title: "React",
+                url: "https://toppng.com/uploads/preview/react-logo-icon-11609374122d9vkbptqap.png",
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        },
+        {
+            id: utilService.makeId(),
+            type: "note-todo",
+            isPinned: false,
+            info: {
+                label: "Get my stuff together",
+                todos: [
+                    { txt: "Driving liscence", done: false },
+                    { txt: "Coding power", done: false }
+                ]
+
+            },
+            style: {
+                backgroundColor: utilService.getRandomLightColor()
+            }
+        }
+    ]
 }
+
+
 
 
 

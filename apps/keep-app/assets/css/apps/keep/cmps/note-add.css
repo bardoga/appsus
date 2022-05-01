@@ -34,8 +34,29 @@
     width: 70px;
     border-radius: 10px;
     text-align: center;
-    /* margin-left: 75%; */
     margin: 0 auto;
     margin-top: 1px;
     position: relative;
+}
+
+.types-selector {
+    /* margin-left: 70%;
+    margin-top: 20px; */
+    float: right;
+    margin-top: 5px;
+}
+
+.puki {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+    /* text-align: center; */
+    display: block;
+    margin: auto;
+    /* margin: auto; */
+    /* top: 50%; */
+    /* margin: auto; */
+    /* width: 20%; */
 }
