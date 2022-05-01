@@ -1,30 +1,31 @@
 /* BASE */
 
-
 html {
-  font-family: 'Barlow Condensed', sans-serif;;
+    font-family: 'Barlow Condensed', sans-serif;
+    ;
 }
 
-body {
-  height: 100vh;
-  overflow-y: hidden;
-}
+
+/* body {
+     height: 100vh; 
+     overflow-y: hidden; 
+}  */
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .container {
-  margin: 0 auto;
-  max-width: 340px;
+    margin: 0 auto;
+    max-width: 340px;
 }
 
 textarea {
-  resize: none;
+    resize: none;
 }
 
 
@@ -181,25 +182,29 @@ animation-duration: 11s;
 
 /* MEDIA QUERIES */
 
+
 /* SMALL */
 
+
 /* MEDIUM */
+
 @media (min-width: 640px) {
-  .container {
-    max-width: 600px;
-  }
+    .container {
+        max-width: 600px;
+    }
 }
+
 
 /* LARGE */
+
 @media (min-width: 900px) {
-  .container {
-    max-width: 850px;
-  }
+    .container {
+        max-width: 850px;
+    }
 }
 
-
 @media (min-width: 1200px) {
-  .container {
-    max-width: 1150px;
-  }
+    .container {
+        max-width: 1150px;
+    }
 }

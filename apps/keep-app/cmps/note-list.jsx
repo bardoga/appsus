@@ -1,16 +1,18 @@
-import {NotePreview} from './note-preview.jsx'
+import { NotePreview } from './note-preview.jsx'
 
 
 
 
-export function NoteList ({notes,onDeleteNote})  {
+export function NoteList({ notes, onDeleteNote, loadNotes }) {
+    if (notes.length === 0) return null
+    let isPinned = notes[0].isPinned
+    return <section className="note-list">
+        <h1>{isPinned && 'Your pinned notes' || !isPinned && 'Unpinned notes'}</h1>
+        <br />
+        <div className="note-list-container">
+            {notes.map(note => <NotePreview note={note} key={note.id} onDeleteNote={onDeleteNote} loadNotes={loadNotes} />)}
+        </div>
 
-    
-            // console.log(notes)
-        return <section className="note-list">
+    </section>
 
-            {notes.map(note => <NotePreview note={note} key={note.id} onDeleteNote={onDeleteNote} />)}
-
-        </section>
-    
 }

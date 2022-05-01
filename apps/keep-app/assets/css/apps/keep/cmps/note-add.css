@@ -24,9 +24,18 @@
     top: 60%;
     left: 95%;
     border: none;
-    /* box-shadow: 0 0 10px 0; */
 }
 
 .submit:hover {
     box-shadow: 0 0 5px 0;
+}
+
+.type-selector {
+    width: 70px;
+    border-radius: 10px;
+    text-align: center;
+    /* margin-left: 75%; */
+    margin: 0 auto;
+    margin-top: 1px;
+    position: relative;
 }

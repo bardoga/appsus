@@ -1,6 +1,5 @@
 import { noteService } from '../services/note.service.js'
 
-
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteFilter } from '../cmps/note-filter.jsx'
 import { NoteAdd } from '../cmps/note-add.jsx'
@@ -16,7 +15,6 @@ export class NoteApp extends React.Component {
         filterBy: null,
     }
     componentDidMount() {
-        // console.log('Props from notesApp', notes)
         this.loadNotes()
     }
 
@@ -37,34 +35,46 @@ export class NoteApp extends React.Component {
     }
 
     onDeleteNote = (noteId) => {
-        // console.log(noteId)
-    this.setState({notes:this.state.notes.filter(note => note.id !== noteId)} )
-        noteService.update(noteId)
+        console.log(noteId)
+        noteService.deleteNote(noteId)
         this.loadNotes()
-
-
-
-
     }
 
 
-
-    get notesToDisplay() {
-        const { notes } = this.state
-        const urlSrcPrm = new URLSearchParams(this.props.location.search)
-        const ntg = urlSrcPrm.get('ntg')
-        if (!ntg) return notes
-        return notes.filter(note => (note.ntg === ntg))
+    getPinnedNotes = () => {
+        if (!this.state.notes) return;
+        let pinnedNotes = this.state.notes.filter(note => {
+            return note.isPinned;
+        })
+        return pinnedNotes
     }
+
+    getUnPinnedNotes = () => {
+        if (!this.state.notes) return;
+        let UnPinnedNotes = this.state.notes.filter(note => {
+            return !note.isPinned;
+        })
+        return UnPinnedNotes
+    }
+
+
+    // get notesToDisplay() {
+    //     const { notes } = this.state
+    //     const urlSrcPrm = new URLSearchParams(this.props.location.search)
+    //     const ntg = urlSrcPrm.get('ntg')
+    //     if (!ntg) return notes
+    //     return notes.filter(note => (note.ntg === ntg))
+    // }
 
     render() {
-        const notes = this.state.notes
-        // console.log(notes)
+        const {notes} = this.state.notes
+        const pinnedNotes = this.getPinnedNotes()
+        const UnpinnedNotes = this.getUnPinnedNotes()
         return <section className="note-index">
-            {/* <h2>Notes App</h2> */}
-            <NoteFilter onSetFilter={this.onSetFilter} history={this.props.history} />
+            {/* <NoteFilter onSetFilter={this.onSetFilter} history={this.props.history} /> */}
             <NoteAdd loadNotes={this.loadNotes} />
-            <NoteList notes={this.notesToDisplay} onDeleteNote={this.onDeleteNote} />
+            <NoteList notes={pinnedNotes} onDeleteNote={this.onDeleteNote} loadNotes={this.loadNotes} />
+            <NoteList notes={UnpinnedNotes} onDeleteNote={this.onDeleteNote} loadNotes={this.loadNotes} />
 
         </section>
     }
