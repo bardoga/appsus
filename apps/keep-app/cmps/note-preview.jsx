@@ -1,5 +1,5 @@
 import { noteService } from '../services/note.service.js'
-import { DynamicNote } from './dynamicCmps/DynamicNote.jsx'
+import { DynamicNote } from './DynamicNote.jsx'
 
 export class NotePreview extends React.Component {
     mouseMoveRef = React.createRef()

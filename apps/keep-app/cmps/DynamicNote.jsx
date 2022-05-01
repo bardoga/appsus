@@ -1,7 +1,7 @@
-import { NoteText } from "../note-text.jsx"
-import { NoteImg } from "../note-img.jsx"
-import { NoteTodo } from "../note-todo.jsx"
-import { NoteVid } from "../note-vid.jsx"
+import { NoteText } from './note-text.jsx'
+import { NoteImg } from './note-img.jsx'
+import { NoteTodo } from './note-todo.jsx'
+import { NoteVid } from './note-vid.jsx'
 
 export function DynamicNote({ note }) {
     switch (note.type) {
